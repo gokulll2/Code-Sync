@@ -4,6 +4,7 @@
     align-items: center;
     height: 100vh;
     color: #fff;
+    /* flex-direction: column; */
  }
  .formWrapper{
     background: #282a36;
@@ -12,7 +13,9 @@
     width: 400px;
     max-width: 90%;
  }
- .footer{
+ footer{
+    /* position: fixed; */
+    /* position: fixed; */
     position: fixed;
     bottom:0;
  }
@@ -32,4 +35,35 @@
 .homePageLogo {
     height: 80px;
     margin-bottom: 30px;
+}
+.inputBox{
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    margin-bottom: 14px;
+    background: #eee;
+    font-size: 16px;
+    font-weight: bold;
+}
+.btn{
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; 
+}
+.joinBtn{
+    background: #4aed88;
+    width: 100px;
+    margin-left: auto; 
+}
+.joinBtn:hover{
+    background: #2b824c;
+}
+.createInfo{
+    margin: 0 auto;
+    margin-top: 20px;
 }
