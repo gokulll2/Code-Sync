@@ -4,7 +4,8 @@ import { Editor } from '../components/Editor';
 export const EditorPage = () => {
     const[clients,setClients] = React.useState([
                                 {socketId:1 , username:"Rakesh K"},
-                                {socketId:2 , username:"Gokul"}
+                                {socketId:2 , username:"Gokul"},
+                                {socketId:3 , username:"John Doe"}
                     ]);
   return (
     <div className='mainWrap'>
@@ -30,7 +31,7 @@ export const EditorPage = () => {
             <button className='btn leaveBtn'>Leave</button>
         </div>
         <div className='editorWrap'>
-           <Editor />
+           <Editor/>
         </div>
     </div>
   )
