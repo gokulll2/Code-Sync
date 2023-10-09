@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Client from '../components/Client';
 import  {Editor} from '../components/Editor';
 export const EditorPage = () => {
+
+    const socketRef = useRef(null);
     const[clients,setClients] = React.useState([
                                 {socketId:1 , username:"Rakesh K"},
                                 {socketId:2 , username:"Gokul"},
