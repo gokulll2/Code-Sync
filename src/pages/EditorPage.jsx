@@ -1,6 +1,6 @@
 import React from 'react'
 import Client from '../components/Client';
-import { Editor } from '../components/Editor';
+import  {Editor} from '../components/Editor';
 export const EditorPage = () => {
     const[clients,setClients] = React.useState([
                                 {socketId:1 , username:"Rakesh K"},
