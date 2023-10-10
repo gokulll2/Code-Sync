@@ -9,17 +9,21 @@ export const EditorPage = () => {
 
     const socketRef = useRef(null);
 
+    const codeRef = useRef(null);
+
     const location = useLocation();
     
     const { roomId } = useParams(); //useParams hook to fetch the roomId from the url.
 
     const reactNavigator = useNavigate();
 
+    const[clients,setClients] = React.useState([]);
+
     React.useEffect(() =>{
         const init  = async () => {
             socketRef.current = await initSocket();
 
-            socketRef.current.on('connect failed ' , (err) => handleErrors(err));
+            socketRef.current.on('connect error ' , (err) => handleErrors(err));
             socketRef.current.on('connect_failed' , (err)=> handleErrors(err));
 
 
@@ -31,28 +35,28 @@ export const EditorPage = () => {
             }
             socketRef.current.emit(ACTIONS.JOIN , {
                 roomId , 
-                username: location.state?.username,
+                username: location.state?.userName,
 
             });
 
             //Listening for joined event
-            socketRef.current.on(ACTIONS.JOINED , ({clients , username , socketId,})=>{
-                if(username !== location.state?.username)
+            socketRef.current.on
+            (ACTIONS.JOINED , 
+            ({clients , username , socketId,})=>{
+                if(username !== location.state?.userName)
                 {
                     toast.success(`${username} joined the room.`)
                     console.log(`${username} joined`);
                 }
+                console.log("clients:" , clients);
+                console.log("username:",username);
+                setClients(clients);
             })
 
         }
         init();
-    },[])
-    
-    const[clients,setClients] = React.useState([
-                                {socketId:1 , username:"Rakesh K"},
-                                {socketId:2 , username:"Gokul"},
-                                {socketId:3 , username:"John Doe"}
-                    ]);
+    },[]);
+
    if(!location.state)
    {
     return <Navigate to="/"/>
