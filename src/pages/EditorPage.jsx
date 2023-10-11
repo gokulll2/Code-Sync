@@ -62,6 +62,12 @@ export const EditorPage = () => {
             })
         };
         init();
+        //cleaning function
+        return ()=>{
+            socketRef.current.disconnect();
+            socketRef.current.off(ACTIONS.JOINED);
+            socketRef.current.off(ACTIONS.DISCONNECTED);
+        }
     },[]);
 
    if(!location.state)
@@ -92,7 +98,7 @@ export const EditorPage = () => {
             <button className='btn leaveBtn'>Leave</button>
         </div>
         <div className='editorWrap'>
-           <Editor/>
+           <Editor socketRef = {socketRef} roomId={roomId}/>
         </div>
     </div>
   )
