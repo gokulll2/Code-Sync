@@ -74,6 +74,16 @@ export const EditorPage = () => {
    {
     return <Navigate to="/"/>
    }
+
+   async function copyRoomID(){
+    try{
+        await navigator.clipboard.writeText(roomId);
+        toast.success('Room ID has been copied to your clipboard');
+    }catch(err){
+        toast.error('Could not copy the Room ID');
+        console.log(err);
+    }
+   }
   return (
     <div className='mainWrap'>
         <div className='aside'>
@@ -94,8 +104,8 @@ export const EditorPage = () => {
                     ))}
                 </div>
             </div>
-            <button className='btn copyBtn'>Copy ROOM ID</button>
-            <button className='btn leaveBtn'>Leave</button>
+            <button className='btn copyBtn' onClick={copyRoomID}>Copy ROOM ID</button>
+            <button className='btn leaveBtn' onClick={leaveRoom}>Leave</button>
         </div>
         <div className='editorWrap'>
            <Editor socketRef = {socketRef} roomId={roomId}/>
