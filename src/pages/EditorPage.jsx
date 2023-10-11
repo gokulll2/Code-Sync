@@ -48,12 +48,19 @@ export const EditorPage = () => {
                     toast.success(`${username} joined the room.`)
                     console.log(`${username} joined`);
                 }
-                console.log("clients:" , clients);
-                console.log("username:",username);
+                // console.log("clients:" , clients);
+                // console.log("username:",username);
                 setClients(clients);
+            });
+            
+            //Listening for Disconnecting
+            socketRef.current.on(ACTIONS.DISCONNECTED,({ socketId , username })=>{
+                toast.success(`${username} left the room . `);
+                setClients((prev)=>{
+                    return prev.filter((client) => client.socketId!==socketId)
+                })
             })
-
-        }
+        };
         init();
     },[]);
 
