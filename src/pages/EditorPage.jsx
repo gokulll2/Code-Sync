@@ -84,6 +84,10 @@ export const EditorPage = () => {
         console.log(err);
     }
    }
+   function leaveRoom()
+   {
+   reactNavigator('/');
+   }
   return (
     <div className='mainWrap'>
         <div className='aside'>
