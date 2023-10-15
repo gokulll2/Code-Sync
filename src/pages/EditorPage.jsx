@@ -51,6 +51,11 @@ export const EditorPage = () => {
                 // console.log("clients:" , clients);
                 // console.log("username:",username);
                 setClients(clients);
+                
+                socketRef.current.emit(ACTIONS.SYNC_CODE , {
+                    code:codeRef.current,
+                    socketId,
+                });
             });
             
             //Listening for Disconnecting
@@ -112,7 +117,7 @@ export const EditorPage = () => {
             <button className='btn leaveBtn' onClick={leaveRoom}>Leave</button>
         </div>
         <div className='editorWrap'>
-           <Editor socketRef = {socketRef} roomId={roomId}/>
+           <Editor socketRef = {socketRef} roomId={roomId} onCodeChange={(code) => {codeRef.current = code }}/>
         </div>
     </div>
   )

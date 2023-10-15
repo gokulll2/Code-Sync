@@ -9,6 +9,7 @@ import ACTIONS from '../Actions';
 export const Editor = (props) => {
     const socketRef = props.socketRef;
     const roomId = props.roomId;
+    const onCodeChange = props.onCodeChange;
     const editorRef = useRef(null);
     React.useEffect(()=>{
         async function init(){
@@ -19,12 +20,12 @@ export const Editor = (props) => {
                 autoCloseBrackets:true,
                 lineNumbers:true,
             });
-           
+            
             editorRef.current.on('change',(instance,changes)=>{
               // console.log("changes",changes);
               const {origin} = changes;
               const code = instance.getValue();
-
+              onCodeChange(code);
               if(origin!=='setValue')
               {
                 socketRef.current.emit(ACTIONS.CODE_CHANGE,{
