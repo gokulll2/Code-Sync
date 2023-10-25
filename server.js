@@ -8,7 +8,7 @@ const ACTIONS = require("./src/Actions");
 
 const server = http.createServer(app);
 const io = new Server(server);
-
+    
 app.use(express.static('build'));
 
 app.use((req,res,next) =>{
@@ -20,6 +20,7 @@ function getAllClients(roomId)
 {
    return Array.from(io.sockets.adapter.rooms.get(roomId) || []).map(
         (socketId) =>{
+            // console.log(io);
         return {
             socketId,
             username:userSocketMap[socketId],
